@@ -17,6 +17,9 @@ import {merge, fromEvent, Observable, concat, throwError, combineLatest} from 'r
 import {Lesson} from '../model/lesson';
 import {CoursesService} from '../services/courses.service';
 
+/**
+ * SINGLE DATA OBSERVABLE PATTERN
+ */
 
 interface CourseData {
     course: Course;
@@ -37,8 +40,6 @@ export class CourseComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private coursesService: CoursesService) {
-
-
   }
 
   ngOnInit() {
