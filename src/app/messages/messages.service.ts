@@ -13,7 +13,12 @@ export class MessagesService {
             filter(messages => messages && messages.length > 0)
         );
 
+    constructor() {
+        console.log("Message service created...")
+    }
+
     showErrors(...errors: string[]) {
+        // ? errors = ['error1','error2']
         this.subject.next(errors);
     }
 

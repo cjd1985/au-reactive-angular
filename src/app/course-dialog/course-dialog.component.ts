@@ -47,10 +47,27 @@ export class CourseDialogComponent {
 
       const changes = this.form.value;
 
+      // === STATELESS PATTERN
+/*         const saveCourse$ = this.coursesService.saveCourse(this.course.id, changes)
+        .pipe(
+            catchError(err => {
+                const message = "Could not save course";
+                console.log(message, err);
+                this.messagesService.showErrors(message);
+                return throwError(err);
+            })
+        )
+
+        this.loadingService.showLoaderUntilCompleted(saveCourse$)
+        .subscribe(
+            val => this.dialogRef.close(val)
+        ) */
+      // ===
+
       this.coursesStore.saveCourse(this.course.id, changes)
           .subscribe();
 
-      this.dialogRef.close(changes);
+      this.dialogRef.close(changes); // ? close immediately
 
     }
 

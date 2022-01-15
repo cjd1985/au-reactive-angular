@@ -2,6 +2,11 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject,of} from 'rxjs';
 import {concatMap, finalize, tap} from 'rxjs/operators';
 
+/**
+ * LOADING INSTANCES (Different component tree)
+ * 1 - On app-root
+ * 2 - On course-dialog
+ */
 
 @Injectable()
 export class LoadingService {

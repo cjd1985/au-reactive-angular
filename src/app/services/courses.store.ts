@@ -6,6 +6,9 @@ import {HttpClient} from '@angular/common/http';
 import {LoadingService} from '../loading/loading.service';
 import {MessagesService} from '../messages/messages.service';
 
+/**
+ * STATEFUL SERVICE
+ */
 
 @Injectable({
     providedIn: 'root'
@@ -21,6 +24,7 @@ export class CoursesStore {
         private loading: LoadingService,
         private messages: MessagesService) {
 
+        console.warn('---CoursesStore START---')
         this.loadAllCourses();
 
     }
@@ -46,18 +50,26 @@ export class CoursesStore {
 
     saveCourse(courseId:string, changes: Partial<Course>): Observable<any> {
 
+        console.log('---saveCourse | changes---', changes)
+
+        // * Store Optimistic Data Modifications
+
         const courses = this.subject.getValue();
+
+        console.log('---existing courses---', courses)
 
         const index = courses.findIndex(course => course.id == courseId);
 
-        const newCourse: Course = {
+        const newSavedCourse: Course = {
           ...courses[index],
           ...changes
         };
 
         const newCourses: Course[] = courses.slice(0);
 
-        newCourses[index] = newCourse;
+        newCourses[index] = newSavedCourse;
+
+        console.log('---updated courses---', newCourses)
 
         this.subject.next(newCourses);
 

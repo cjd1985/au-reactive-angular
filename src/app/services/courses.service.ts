@@ -5,6 +5,9 @@ import {Observable} from 'rxjs';
 import {map, shareReplay} from 'rxjs/operators';
 import {Lesson} from '../model/lesson';
 
+/**
+ * STATELESS SERVICE
+ */
 
 @Injectable({
     providedIn:'root'
